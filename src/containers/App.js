@@ -6,6 +6,11 @@ import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
   state = {
     persons: [
       { id: 'asdasd', name: 'Max', age: 28 },
@@ -15,6 +20,19 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", state);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount");
+  }
+
+  // componentWillMount() {
+  //   console.log("[App.js] componentWillMount");
+  // }
 
   // switchNameHandler = (newName) => {
   //   // console.log('Was clicked!');
@@ -60,17 +78,17 @@ class App extends Component {
     //   border: '1px solid blue',
     //   padding: '8px',
     // };
-
+    console.log("[App.js] render");
     let persons = null;
-    
+
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Persons 
-            persons = {this.state.persons}
-            clicked = {this.deletePersonHandler}
-            changed = {this.nameChangedHandler} />
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler} />
         </div>
       );
       // style.backgroundColor = 'red';
@@ -87,8 +105,9 @@ class App extends Component {
 
       <div className={classes.App}>
         <Cockpit persons={this.state.persons}
+          title={this.props.appTitle}
           clicked={this.togglePersonHandler}
-          showPerson={this.state.showPersons}/>
+          showPerson={this.state.showPersons} />
         {persons}
       </div>
 
