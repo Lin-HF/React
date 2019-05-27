@@ -30,21 +30,6 @@ class App extends Component {
     console.log("[App.js] componentDidMount");
   }
 
-  // componentWillMount() {
-  //   console.log("[App.js] componentWillMount");
-  // }
-
-  // switchNameHandler = (newName) => {
-  //   // console.log('Was clicked!');
-  //   // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
-  //   this.setState({
-  //     persons: [
-  //       { name: newName, age: 28 },
-  //       { name: 'Manu', age: 29 },
-  //       { name: 'Stephanie', age: 27 }
-  //     ]
-  //   })
-  // }
   deletePersonHandler = (personIndex) => {
     //const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
