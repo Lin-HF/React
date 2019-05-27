@@ -15,36 +15,34 @@ class Person extends Component {
         this.inputElement = React.createRef();
     }
 
-    //static contextType = AuthContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
         //document.querySelector('input').focus(); // but only the first
         this.inputElement.current.focus();
-        //console.log(this.context.authenticated);
+        console.log(this.context.authenticated);
     }
-    render(){
+    render() {
         console.log("[Person.js] rederring...");
-    return (
-        //<div className={classes.Person}>
-        <Aux>
-            <AuthContext.Consumer>
-                {context => 
-                    context.authenticated ? <p>Authenticated</p> : <p>Please log in</p> }
-            </AuthContext.Consumer>
+        return (
+            //<div className={classes.Person}>
+            <Aux>
 
-            <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
-            <p>{this.props.children}</p>
-            <input 
-                //ref={(inputEl) => {this.inputElement = inputEl}}
-                ref={this.inputElement}
-                type="text" 
-                onChange={this.props.changed} 
-                value={this.props.name} />
-        </Aux>
-        //</div>
-    )
+                {this.context.authenticated ? <p>Authenticated</p> : <p>Please log in</p>}
+
+                <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
+                <p>{this.props.children}</p>
+                <input
+                    //ref={(inputEl) => {this.inputElement = inputEl}}
+                    ref={this.inputElement}
+                    type="text"
+                    onChange={this.props.changed}
+                    value={this.props.name} />
+            </Aux>
+            //</div>
+        )
     }
-    
+
 };
 
 Person.propTypes = {
