@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './Person.css';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 class Person extends Component {
     // const rnd = Math.random();
@@ -13,15 +14,24 @@ class Person extends Component {
         super(props);
         this.inputElement = React.createRef();
     }
+
+    //static contextType = AuthContext;
+
     componentDidMount() {
         //document.querySelector('input').focus(); // but only the first
         this.inputElement.current.focus();
+        //console.log(this.context.authenticated);
     }
     render(){
         console.log("[Person.js] rederring...");
     return (
         //<div className={classes.Person}>
         <Aux>
+            <AuthContext.Consumer>
+                {context => 
+                    context.authenticated ? <p>Authenticated</p> : <p>Please log in</p> }
+            </AuthContext.Consumer>
+
             <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
             <p>{this.props.children}</p>
             <input 
