@@ -9,6 +9,14 @@ class Person extends Component {
     // if (rnd < 0.7) {
     //     throw new Error('Something went wrong');
     // }
+    constructor(props) {
+        super(props);
+        this.inputElement = React.createRef();
+    }
+    componentDidMount() {
+        //document.querySelector('input').focus(); // but only the first
+        this.inputElement.current.focus();
+    }
     render(){
         console.log("[Person.js] rederring...");
     return (
@@ -16,7 +24,12 @@ class Person extends Component {
         <Aux>
             <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
             <p>{this.props.children}</p>
-            <input type="text" onChange={this.props.changed} value={this.props.name} />
+            <input 
+                //ref={(inputEl) => {this.inputElement = inputEl}}
+                ref={this.inputElement}
+                type="text" 
+                onChange={this.props.changed} 
+                value={this.props.name} />
         </Aux>
         //</div>
     )
